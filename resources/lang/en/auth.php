@@ -15,5 +15,7 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'confirm' => 'Confirmation has been send, please check your mail.',
+    'completed' => 'Your activation is completed',
+    'wrong' => 'Something went wrong.',
 ];
