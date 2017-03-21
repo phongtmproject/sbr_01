@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href ="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -70,7 +71,7 @@
                             <li><a href="{{ route('register') }}">{{ trans('app.register') }}</a></li>
                         @else
                             <li><a href="">
-                                <span><img src="{{ Auth::user()->avatar }}" width="30px" height="30px" ></span>
+                                <span><img src="{{ asset(Auth::user()->avatar) }}" id="avatar_header"></span>
                                     {{ Auth::user()->name }}
                                 </a>
                             </li>
@@ -81,15 +82,22 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href=""><i class="fa fa-gear fa-fw"></i> {{ trans('app.setting') }}</a>
-                                        <a href=""><i class="fa fa-gear fa-fw"></i> {{ trans('app.change_pass') }}</a>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i>
-                                            {{ trans('app.logout') }}
+                                        <a href="{{ route('user.setting') }}">
+                                            <i class="fa fa-gear fa-fw">
+                                            </i> 
+                                            {{ trans('app.setting') }}
+                                        </a>
+                                        <a href="{{ route('user.changePass') }}">
+                                            <i class="fa fa-gear fa-fw"></i> 
+                                            {{ trans('app.change_pass') }}
+                                        </a>
+                                        <a id="logout">
+                                            <i class="fa fa-sign-out fa-fw">
+                                            </i>
+                                            @lang('app.logout')
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>

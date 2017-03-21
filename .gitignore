@@ -8,3 +8,5 @@
 Homestead.json
 Homestead.yaml
 .env
+/public/avatars
+/public/photo_covers
