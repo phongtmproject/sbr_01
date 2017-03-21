@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'facebook_id', 'review_liciense', 'comment_liciense', 'level', 'language', 'score'
+        'name', 'email', 'password', 'avatar', 'photo_cover', 'facebook_id', 'review_liciense', 'comment_liciense', 'level', 'language', 'score', 'confirmed', 'about'
     ];
 
     /**
@@ -26,6 +26,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    const CONFIRMED = 1;
 
     public function likes()
     {
@@ -70,5 +72,20 @@ class User extends Authenticatable
     public function following()
     {
         return $this->hasMany(Following::class, 'following_id', 'id');
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function scopeConfirmation($query, $tokenConfirm)
+    {
+        return $query->where('token_confirm', $tokenConfirm);
+    }
+
+    public function scopeFindUser($query, $facebookId)
+    {
+        return $query->where('facebook_id', $facebookId);
     }
 }

@@ -6,6 +6,8 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -65,7 +67,50 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $data['password'],
+            'language' => $data['language']
         ]);
+    }
+
+    protected function register(Request $request)
+    {
+        $input = $request->all();
+        $validator = $this->validator($input);
+
+        if ($validator->passes()) {
+            $data = $this->create($input)->toArray();
+            $data['token_confirm'] = str_random(25);
+            $user = User::find($data['id']);
+            $user->token_confirm = $data['token_confirm'];
+            $user->save();
+
+            try {
+                Mail::send('mails.confirm', $data, function ($message) use ($data) {
+                    $message->to($data['email']);
+                    $message->subject('Registration confirm');
+                });
+
+                return redirect(route('login'))->with('status', trans('auth.confirm'));
+            } catch (Exception $e) {
+                return redirect(route('login'));
+            }
+        }
+
+        return redirect(route('login'))->with('status', $validator->errors());
+    }
+
+    public function confirmation($tokenConfirm)
+    {
+        $user = User::confirmation($tokenConfirm)->first();
+
+        if (!is_null($user)) {
+            $user->confirmed = User::CONFIRMED;
+            $user->token_confirm = '';
+            $user->save();
+            
+            return redirect(route('login'))->with('status', trans('auth.completed'));
+        }
+
+        return redirect(route('login'))->with('status', trans('auth.wrong'));
     }
 }

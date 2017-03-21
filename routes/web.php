@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+Route::get('auth/facebook', ['as' => 'facebook.login', 'uses' => 'Auth\LoginController@redirectToProvider']);
+
+Route::get('auth/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::get('user/confirmation/{token}', ['as' => 'confirmation', 'uses' => 'Auth\RegisterController@confirmation']);
