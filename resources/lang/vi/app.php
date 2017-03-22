@@ -34,12 +34,12 @@ return [
 
     'message' => [
         'edit_success' => 'Sửa thành công',
-        'add_success' => 'Thêm thành công'
+        'add_success' => 'Thêm thành công',
     ],
     
     'button' => [
         'save' => 'Lưu',
         'reset' => 'Làm mới',
-        'update' => 'Cập nhật'
+        'update' => 'Cập nhật',
     ]
 ];

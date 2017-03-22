@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -87,5 +88,49 @@ class User extends Authenticatable
     public function scopeFindUser($query, $facebookId)
     {
         return $query->where('facebook_id', $facebookId);
+    }
+
+    public function storeSetting(Request $request)
+    {
+        try {
+            $this->name = $request->name;
+            $this->language = $request->language;
+
+            if ($request->avatar) {
+                $this->insertImage($request, 'avatar');
+            }
+
+            if ($request->photo_cover) {
+                $this->insertImage($request, 'photo_cover');
+            }
+
+            $this->about = $request->about;
+            $this->save();
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
+    }
+
+    public function insertImage(Request $request, $imageType)
+    {
+        try {
+            $file = $request->file($imageType);
+            $name = $file->getClientOriginalName();
+            $name = str_random(5).'_'.$name;
+            $file->move($imageType.'s', $name);
+            $this->$imageType = $imageType.'s/'.$name;
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
+    }
+
+    public function storePass($password)
+    {
+        try {
+            $this->password = $password;
+            $this->save();
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
     }
 }

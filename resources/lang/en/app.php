@@ -46,12 +46,12 @@ return [
 
     'message' => [
         'edit_success' => 'Edit success',
-        'add_success' => 'Add success'
+        'add_success' => 'Add success',
     ],
     
     'button' => [
         'save' => 'Save',
         'reset' => 'Reset',
-        'update' => 'Update'
+        'update' => 'Update',
     ]
 ];
