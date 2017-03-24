@@ -38,3 +38,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 
 Route::get('search/member', ['as' => 'search.member', 'uses' => 'MemberController@searchMember']);
 
+Route::resource('book', 'BookListController');
