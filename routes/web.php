@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Auth::routes();
 
@@ -39,3 +37,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
 Route::get('search/member', ['as' => 'search.member', 'uses' => 'MemberController@searchMember']);
 
 Route::resource('book', 'BookListController');
+
+Route::get('member/{id}', ['as' => 'member.show', 'uses' => 'MemberController@show']);
+
+Route::get('member/{id}/about', ['as' => 'member.about', 'uses' => 'MemberController@about']);
+
+Route::get('member/{id}/video', ['as' => 'member.showVideo', 'uses' => 'MemberController@showVideo']);
+
+Route::get('member/{id}/favorites', ['as' => 'member.favorites', 'uses' => 'MemberController@favorites']);
+
+Route::get('member/{id}/following', ['as' => 'member.following', 'uses' => 'MemberController@following']);

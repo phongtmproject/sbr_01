@@ -17,4 +17,14 @@ class UserBook extends Model
     {
         return $this->belongsTo(Book::class);
     }
+
+    public function scopeSelectUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+
+    public function scopeFavorites($query)
+    {
+        return $query->where('favorite', 1);
+    }
 }
