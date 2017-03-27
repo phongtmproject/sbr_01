@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $table = 'books';
+    protected $fillable = [
+        'author',
+        'description',
+        'title',
+        'category_id',
+        'number_pages',
+        'publish_date',
+        'image',
+        'rate',
+        'score',
+        'price',
+    ];
 
     public function category()
     {
