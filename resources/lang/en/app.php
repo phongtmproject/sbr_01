@@ -42,6 +42,7 @@ return [
     'language' => 'Language',
     'english' => 'English',
     'vietnamese' => 'Vietnamese',
+    'favorite' => 'Favorite',
     'confirm_message' => ' Your confirmation is completed. Please click the link ot get access ',
 
     'message' => [

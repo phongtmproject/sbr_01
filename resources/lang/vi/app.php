@@ -31,6 +31,7 @@ return [
     'forgot_password' => 'Quên mật khẩu ?',
     'remember' => 'Nhớ mật khẩu',
     'send_link_pass' => 'Gửi link reset mật khẩu tới email',
+    'favorite' => 'Yêu thích',
 
     'message' => [
         'edit_success' => 'Sửa thành công',

@@ -27,4 +27,24 @@ class Review extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeSelectUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+
+    public function scopeSelectStreamVideo($query)
+    {
+        return $query->where('stream_link', '<>', null);
+    }
+
+    public function scopeSelectReviewText($query)
+    {
+        return $query->where('stream_link', null);
+    }
+
+    public function scopeSortDesc($query)
+    {
+        return $query->orderBy('id', 'desc');
+    }
 }

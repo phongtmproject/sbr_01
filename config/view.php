@@ -30,4 +30,10 @@ return [
 
     'compiled' => realpath(storage_path('framework/views')),
 
+    'paginate' => 6,
+
+    'limit_review' => 200,
+
+    'limit_about' => 100,
+
 ];
