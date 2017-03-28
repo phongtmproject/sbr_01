@@ -32,6 +32,9 @@ return [
     'remember' => 'Nhớ mật khẩu',
     'send_link_pass' => 'Gửi link reset mật khẩu tới email',
     'favorite' => 'Yêu thích',
+    'category' => 'Thể loại',
+    'livestream' => 'Trực tiếp',
+    'search_review' => 'Tìm kiếm bài viết',
 
     'message' => [
         'edit_success' => 'Sửa thành công',

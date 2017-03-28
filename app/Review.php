@@ -47,4 +47,19 @@ class Review extends Model
     {
         return $query->orderBy('id', 'desc');
     }
+
+    public function scopeSelectTop($query)
+    {
+        return $query->take(config('view.top_video'));
+    }
+
+    public function scopeMostNewVideo($query)
+    {
+        return $query->take(config('view.most_new_review'));
+    }
+
+    public function scopeSearchReview($query, $caption)
+    {
+        return $query->where('caption', 'like', '%' . $caption . '%');
+    }
 }
