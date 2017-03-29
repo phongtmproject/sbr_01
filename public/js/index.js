@@ -34,6 +34,33 @@ $('.multi-item-carousel .item').each(function (){
     }
 });
 
-$(document).on('click', '.comment', function() {
+$(document).on('click', '.comment', function () {
     $(this).closest('p.action').siblings('.content').removeClass('hidden');
+});
+
+$(document).on('click', '#full-video', function () {
+    var url = '/video/full';
+    var content = $('#review_content');
+
+    $.get(url, function (data) {
+        content.html(data);
+    });
+});
+
+$(document).on('click', '.review-category', function () {
+    var url = '/category/review';
+    var category_id = $(this).children('.categoryId').val();
+
+    $.get(url, { category_id: category_id }, function (data) {
+        $('#review_content').html(data);
+    });
+});
+
+$(document).on('keyup', '#searchReview', function (){
+    var url = '/search/review';
+    var key = $(this).val();
+
+    $.get(url, { caption: key }, function (data) {
+        $('#review_content').html(data);
+    });
 });
