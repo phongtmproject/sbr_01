@@ -33,4 +33,17 @@ class Controller extends BaseController
             return $next($request);
         });
     }
+
+    public function user_like($user, $reviews)
+    {
+        $reviews = $reviews->each(function (&$review) use ($user) {
+            if ($review->userLike($user->id)->count() > 0) {
+                $review['user_like'] = 1;
+            } else {
+                $review['user_like'] = 0;
+            }
+        });
+
+        return $reviews;
+    }
 }
