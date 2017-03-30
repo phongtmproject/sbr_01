@@ -512,16 +512,16 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb"
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/20ff8bbb57205368b4b42d094642a3e52dac85fb",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/1bf24f7334fe16c88bf9d467863309ceaf285b01",
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01",
                 "shasum": ""
             },
             "require": {
@@ -550,7 +550,11 @@
                 "markdown",
                 "parser"
             ],
+<<<<<<< f4174e2957d4a55e54d1a80bcf21bc4ad86aa02c
             "time": "2016-11-02 15:56:58"
+=======
+            "time": "2017-03-29T16:04:15+00:00"
+>>>>>>> repository_v2
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -998,7 +1002,11 @@
                 "laravel",
                 "oauth"
             ],
+<<<<<<< f4174e2957d4a55e54d1a80bcf21bc4ad86aa02c
             "time": "2017-03-27 19:43:19"
+=======
+            "time": "2017-03-27T19:43:19+00:00"
+>>>>>>> repository_v2
         },
         {
             "name": "laravel/tinker",
@@ -1728,7 +1736,11 @@
                 "identifier",
                 "uuid"
             ],
+<<<<<<< f4174e2957d4a55e54d1a80bcf21bc4ad86aa02c
             "time": "2017-03-26 20:37:53"
+=======
+            "time": "2017-03-26T20:37:53+00:00"
+>>>>>>> repository_v2
         },
         {
             "name": "swiftmailer/swiftmailer",

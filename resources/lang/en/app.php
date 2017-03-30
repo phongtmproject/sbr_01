@@ -49,6 +49,7 @@ return [
     'search_review' => 'Search review',
     'full_video' => 'Full video',
     'confirm_message' => ' Your confirmation is completed. Please click the link ot get access ',
+    'errors_exceptions' => 'errors exceptions: not instance',
 
     'message' => [
         'edit_success' => 'Edit success',
