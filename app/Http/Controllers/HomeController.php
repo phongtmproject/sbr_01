@@ -1,31 +1,45 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Repositories\Contracts\BookRepositoryInterface;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\ReviewRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Review;
-use App\Category;
-use App\Book;
 
 class HomeController extends Controller
 {
+    protected $bookRepository;
+    protected $categoryRepository;
+    protected  $reviewRepository;
+
+    public function __construct(
+        BookRepositoryInterface $bookRepository,
+        CategoryRepositoryInterface $categoryRepository,
+        ReviewRepositoryInterface $reviewRepository
+    )
+    {
+        parent::__construct();
+        $this->bookRepository = $bookRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->reviewRepository = $reviewRepository;
+    }
+
     public function index()
     {
         $user = $this->user;
-        $streamVideos = Review::selectStreamVideo();
-        $videos = $streamVideos->sortDesc()->selectTop()->get();
-        $mostNewVideo = $streamVideos->mostNewVideo()->first();
+        $videos =  $this->reviewRepository->getTopVideo()->get();
+        $mostNewVideo = $this->reviewRepository->mostNewVideo();
         $numberVideos = $videos->count();
-        $cates = Category::all();
-        $reviews = Review::selectReviewText()->get();
-        $reviews = $this->user_like($user, $reviews);
+        $cates = $this->categoryRepository->all();
+        $reviews = $this->reviewRepository->selectReviewText()->get();
+        $reviews = $this->userLike($user, $reviews);
 
         return view('pages.home', compact('videos', 'numberVideos', 'mostNewVideo', 'cates', 'reviews', 'user'));
     }
 
     public function categoryReview(Request $request)
     {
-        $books = Book::bookCategory($request->categoryId)->get();
+        $books = $this->categoryRepository->find($request->categoryId)->books()->get();
         $user = $this->user;
 
         return view('pages.category-review', compact('books', 'user'));
@@ -33,14 +47,14 @@ class HomeController extends Controller
 
     public function fullVideo()
     {
-        $videos = Review::selectStreamVideo()->sortDesc()->get();
+        $videos = $this->reviewRepository->selectStreamVideo()->get();
 
         return view('pages.full-video', compact('videos'));
     }
 
     public function searchReview(Request $request)
     {
-        $reviews = Review::searchReview($request->caption)->get();
+        $reviews = $this->reviewRepository->searchReview($request->caption)->get();
 
         return view('pages.search-review', compact('reviews'));
     }

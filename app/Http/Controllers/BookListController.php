@@ -21,6 +21,7 @@ class BookListController extends Controller
         CategoryRepositoryInterface $categoryRepository
     )
     {
+        parent::__construct();
         $this->bookRepository = $bookRepository;
         $this->categoryRepository = $categoryRepository;
     }

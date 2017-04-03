@@ -82,4 +82,19 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return true;
     }
+
+    public function confirmation($tokenConfirm)
+    {
+        return $this->model->where('token_confirm', $tokenConfirm);
+    }
+
+    public function findUser($facebookId)
+    {
+        return $this->model->where('facebook_id', $facebookId);
+    }
+
+    public function searchMember($name)
+    {
+        return $this->model->where('name', 'like', '%' . $name . '%');
+    }
 }

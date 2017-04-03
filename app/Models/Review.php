@@ -28,10 +28,6 @@ class Review extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeSelectUser($query, $userId)
-    {
-        return $query->where('user_id', $userId);
-    }
 
     public function scopeSelectStreamVideo($query)
     {
