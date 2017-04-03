@@ -8,17 +8,27 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Category;
+use App\Repositories\Contracts\BookRepositoryInterface;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 
 class BookListController extends Controller
 {
+    protected $bookRepository;
+    protected $categoryRepository;
+
+    public function __construct(
+        BookRepositoryInterface $bookRepository,
+        CategoryRepositoryInterface $categoryRepository
+    )
+    {
+        $this->bookRepository = $bookRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
     public function index()
     {
-            $category = Category::find(1);
-            $books = $category->books;
-            $title = $category->name;
-            $categories = Category::all();
+        $books = $this->bookRepository->findLatest();
+        $title = trans('book.latest-stories');
+        $categories =  $this->categoryRepository->all();
 
         return view('pages.book-list')->with([
             'books' => $books,

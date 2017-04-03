@@ -10,7 +10,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "doctrine/dbal": "v2.5",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "prettus/laravel-repository": "2.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
