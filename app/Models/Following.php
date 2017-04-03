@@ -18,16 +18,6 @@ class Following extends Model
     	return $this->belongsTo(User::class, 'following_id', 'id');
     }
 
-    public function scopeSelectFollower($query, $id)
-    {
-    	return $query->where('follower_id', $id);
-    }
-
-    public function scopeSelectFollowing($query, $id)
-    {
-    	return $query->where('following_id', $id);
-    }
-
     public function resetNewReview()
     {
         $this->new_reviews = 0;

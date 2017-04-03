@@ -39,9 +39,4 @@ class Book extends Model
     {
         return $this->hasMany(Review::class);
     }
-
-    public function scopeBookCategory($query, $categoryId)
-    {
-        return $query->where('category_id', $categoryId);
-    }
 }

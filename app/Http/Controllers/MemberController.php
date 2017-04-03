@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\UserBook;
-use App\Review;
-use App\Following;
+use App\Repositories\Contracts\FollowingRepositoryInterface;
+use App\Repositories\Contracts\UserBookRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+    protected $userRepository;
+    protected $followingRepository;
+    protected $userBookRepository;
+
+    public function __construct(
+        UserRepositoryInterface $userRepository,
+        FollowingRepositoryInterface $followingRepository,
+        UserBookRepositoryInterface $userBookRepository
+    )
+    {
+        parent::__construct();
+        $this->userRepository = $userRepository;
+        $this->followingRepository = $followingRepository;
+        $this->userBookRepository = $userBookRepository;
+    }
+
     public function searchMember(Request $request)
     {
-        $members = User::searchMember($request->name)->get();
+        $members = $this->userRepository->searchMember($request->name)->get();
 
         return view('pages.search-member', compact('members'));
     }
@@ -20,13 +35,13 @@ class MemberController extends Controller
     public function show($id)
     {
         if (isset($this->user->id) && ($this->user->id != $id)) {
-            $following = Following::selectFollower($this->user->id)->selectFollowing($id)->first();
+            $following = $this->followingRepository->selectFollower($this->user->id)->selectFollowing($id)->first();
 
             if (isset($following)) {
                 $following->resetNewReview();
             }
         }
-        
+
         $this->shareView($id);
 
         return view('profiles.timeline');
@@ -56,21 +71,21 @@ class MemberController extends Controller
     public function favorites($id)
     {
         $this->shareView($id);
-        $favorites = UserBook::selectUser($id)->favorites()->paginate(config('view.paginate'));
+        $favorites = $this->userBookRepository->selectUser($id)->favorites()->paginate(config('view.paginate'));
 
         return view('profiles.favorites', compact('favorites'));
     }
 
     public function shareView($id)
     {
-        $videos = Review::selectUser($id)->selectStreamVideo()->get();
+        $videos = $this->userRepository->find($id)->reviews()->selectStreamVideo()->get();
         $numberVideos = $videos->count();
-        $numberFavorites = UserBook::selectUser($id)->favorites()->count();
-        $member = User::find($id);
+        $numberFavorites = $this->userBookRepository->selectUser($id)->favorites()->count();
+        $member = $this->userRepository->find($id);
         $user = $this->user;
-        $reviews = Review::selectUser($id)->selectReviewText()->get();
-        $reviews = $this->user_like($user, $reviews);
-        
+        $reviews = $this->userRepository->find($id)->reviews()->selectReviewText()->get();
+        $reviews = $this->userLike($user, $reviews);
+
         view()->share('user', $this->user);
         view()->share('member', $member);
         view()->share('videos', $videos);

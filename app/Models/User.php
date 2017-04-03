@@ -16,7 +16,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'photo_cover', 'facebook_id', 'review_liciense', 'comment_liciense', 'level', 'language', 'score', 'confirmed', 'about'
+        'name',
+        'email',
+        'password',
+        'avatar',
+        'photo_cover',
+        'facebook_id',
+        'review_liciense',
+        'comment_liciense',
+        'level', 'language',
+        'score',
+        'confirmed',
+        'about',
     ];
 
     /**
@@ -25,7 +36,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     const CONFIRMED = 1;
@@ -78,21 +90,6 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
-    }
-
-    public function scopeConfirmation($query, $tokenConfirm)
-    {
-        return $query->where('token_confirm', $tokenConfirm);
-    }
-
-    public function scopeFindUser($query, $facebookId)
-    {
-        return $query->where('facebook_id', $facebookId);
-    }
-
-    public function scopeSearchMember($query, $name)
-    {
-        return $query->where('name', 'like', '%' . $name . '%');
     }
 
     public function storeSetting(Request $request)
