@@ -11,7 +11,7 @@
         "laravel/tinker": "~1.0",
         "doctrine/dbal": "v2.5",
         "ext-gd": "*",
-        "prettus/laravel-repository": "2.6.*"
+        "laravelcollective/html": "^5.4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

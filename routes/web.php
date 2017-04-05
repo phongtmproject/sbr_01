@@ -87,7 +87,7 @@ Route::get('search/member', [
     'uses' => 'MemberController@searchMember'
 ]);
 
-Route::resource('book', 'BookListController');
+Route::resource('books', 'BookListController');
 
 Route::get('member/{id}', [
     'as' => 'member.show',

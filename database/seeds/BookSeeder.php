@@ -14,7 +14,7 @@ class BookSeeder extends Seeder
                 'category_id' => 1,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book3.jpg',
+                'image' => 'book-images/book3.jpg',
                 'description' => 'Sách hay',
             ],
             [
@@ -24,7 +24,7 @@ class BookSeeder extends Seeder
                 'category_id' => 2,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book2.jpg',
+                'image' => 'book-images/book2.jpg',
                 'description' => 'Sách hay',
             ],
             [
@@ -34,7 +34,7 @@ class BookSeeder extends Seeder
                 'category_id' => 3,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book1.jpeg',
+                'image' => 'book-images/book1.jpeg',
                 'description' => 'Sách hay',
             ],
             [
@@ -44,7 +44,7 @@ class BookSeeder extends Seeder
                 'category_id' => 3,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book4.jpeg',
+                'image' => 'book-images/book4.jpeg',
                 'description' => 'Sách hay',
             ],
             [
@@ -54,7 +54,7 @@ class BookSeeder extends Seeder
                 'category_id' => 2,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book5.jpeg',
+                'image' => 'book-images/book5.jpeg',
                 'description' => 'Sách hay',
             ],
             [
@@ -64,7 +64,7 @@ class BookSeeder extends Seeder
                 'category_id' => 3,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/book6.jpg',
+                'image' => 'book-images/book6.jpg',
                 'description' => 'Sách hay',
             ],
             [
@@ -74,7 +74,7 @@ class BookSeeder extends Seeder
                 'category_id' => 1,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/ctdl.jpeg',
+                'image' => 'book-images/ctdl.jpeg',
                 'description' => 'Sách hay',
             ],
             [
@@ -84,7 +84,7 @@ class BookSeeder extends Seeder
                 'category_id' => 1,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/ktmt.jpg',
+                'image' => 'book-images/ktmt.jpg',
                 'description' => 'Sách hay',
             ],
             [
@@ -94,7 +94,7 @@ class BookSeeder extends Seeder
                 'category_id' => 1,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/hdh.jpeg',
+                'image' => 'book-images/hdh.jpeg',
                 'description' => 'Sách hay',
             ],
             [
@@ -104,7 +104,7 @@ class BookSeeder extends Seeder
                 'category_id' => 1,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/nlhdh.png',
+                'image' => 'book-images/nlhdh.png',
                 'description' => 'Sách hay',
             ],
             [
@@ -114,7 +114,7 @@ class BookSeeder extends Seeder
                 'category_id' => 3,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/vhdg.jpg',
+                'image' => 'book-images/vhdg.jpg',
                 'description' => 'Sách hay',
             ],
             [
@@ -124,7 +124,7 @@ class BookSeeder extends Seeder
                 'category_id' => 2,
                 'publish_date' => '2010/01/01',
                 'price' => '200.000',
-                'image' => 'books/qthdc.jpg',
+                'image' => 'book-images/qthdc.jpg',
                 'description' => 'Sách hay',
             ],
         ]);
