@@ -93,7 +93,7 @@ abstract class BaseRepository implements RepositoryInterface
      *
      * @return mixed
      */
-    public function paginate($columns = ['*'], $limit = null)
+    public function paginate($limit = null, $columns = ['*'])
     {
         $limit = is_null($limit) ? config('settings.pagination.limit') : $limit;
 

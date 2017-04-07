@@ -45,7 +45,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/home') }}">{{ trans('app.home') }}</a></li>
-                        <li><a href="{{ url('/book') }}">{{ trans('app.book') }}</a></li>
+                        <li><a href="{{ url('/books') }}">{{ trans('app.book') }}</a></li>
                         <li><a href="#">{{ trans('app.rank') }}</a></li>
                     </ul>
                     <ul class="navbar-nav nav col-md-5">

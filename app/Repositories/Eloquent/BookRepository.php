@@ -15,16 +15,6 @@ class BookRepository extends BaseRepository implements BookRepositoryInterface
     }
 
     /**
-     * Get All Book Paginate
-     *
-     * @return pagination
-     */
-    public function getAllBookPaginate()
-    {
-        return $this->model->with('author')->paginate();
-    }
-
-    /**
      * Register book
      *
      * @param  array $request
@@ -82,6 +72,18 @@ class BookRepository extends BaseRepository implements BookRepositoryInterface
      */
     public function findLatest()
     {
-      return $this->model->orderBy('publish_date', 'desc')->limit(config('settings.book.limit'))->get();
+      return $this->model->orderBy('publish_date', 'desc')->limit(config('settings.book.limit'));
+    }
+
+    public function findMostPopular()
+    {
+        return $this->model->orderBy('score', 'desc')->limit(config('settings.book.limit'));
+    }
+
+    public function search($search)
+    {
+        return $this->model->where('author', 'like', '%' . $search . '%')
+            ->orWhere('title', 'like', '%' . $search . '%')
+            ->limit(config('settings.book.limit'));
     }
 }

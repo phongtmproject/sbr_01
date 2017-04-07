@@ -19,22 +19,43 @@ class BookListController extends Controller
     public function __construct(
         BookRepositoryInterface $bookRepository,
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         parent::__construct();
         $this->bookRepository = $bookRepository;
         $this->categoryRepository = $categoryRepository;
     }
+
     public function index()
     {
-        $books = $this->bookRepository->findLatest();
-        $title = trans('book.latest-stories');
-        $categories =  $this->categoryRepository->all();
+        $categories = $this->categoryRepository->all();
+        if (($search = \Request::get('search')) != null) {
+            $books = $this->bookRepository->search($search);
+            $title = null;
+        } else {
+            $books = $this->bookRepository->findLatest();
+            $title = trans('book.latest-stories');
+        }
+        $books = $books->paginate(config('settings.pagination.limit'));
 
-        return view('pages.book-list')->with([
-            'books' => $books,
-            'categories' => $categories,
-            'title' => $title,
-        ]);
+        return view('pages.book-list')->with(compact('categories', 'books', 'title', 'search'));
+    }
+
+    public function show($title)
+    {
+        $search = null;
+        $categories = $this->categoryRepository->all();
+        switch ($title) {
+            case trans('sidebar.latest-stories'):
+                $books = $this->bookRepository->findLatest();
+                break;
+            case trans('sidebar.most-popular'):
+                $books = $this->bookRepository->findMostPopular();
+                break;
+            default:
+                $books = $this->categoryRepository->findByName($title)->books();
+        }
+        $books = $books->paginate(config('settings.pagination.limit'));
+
+        return view('pages.book-list')->with(compact('categories', 'books', 'title', 'search'));
     }
 }

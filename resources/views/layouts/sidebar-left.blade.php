@@ -9,19 +9,19 @@
                 <ul class="nav nav-second-level">
                     @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('book.show', $category->id) }}">{{ $category->name }}</a>
+                            <a href="{{ action('BookListController@show', $category->name) }}" name="category">{{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a class="uppercase" href="javascript:void(0)">
+                <a class="uppercase" href="{{ action('BookListController@show', trans('sidebar.latest-stories')) }}">
                     <i class="fa fa-newspaper-o fa-fw"></i>{{ trans('sidebar.latest-stories') }}
                 </a>
             </li>
             <li>
-                <a class="uppercase" href="javascript:void(0)">
+                <a class="uppercase" href="{{ action('BookListController@show', trans('sidebar.most-popular')) }}">
                     <i class="fa fa-heart fa-fw"></i>{{ trans('sidebar.most-popular') }}
                 </a>
             </li>

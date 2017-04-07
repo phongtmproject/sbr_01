@@ -13,4 +13,9 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         return Category::class;
     }
+
+    public function findByName($name)
+    {
+        return $this->model->where('name', 'like', $name)->first();
+    }
 }
